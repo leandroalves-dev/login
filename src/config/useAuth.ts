@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { auth } from "./firebaseConfig";
 
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged, User, createUserWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged, User, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 export function useAuth() {
     const [user, setUser] = useState<User | null>(null);
@@ -18,13 +18,18 @@ export function useAuth() {
     },[]);
 
 
-    async function register(email: string, password: string) {
+    async function register(email: string, password: string, name: string) {
         try {
             const useRegister = await createUserWithEmailAndPassword(auth, email, password);
-            setUser(useRegister.user);
+            const newUser =  useRegister.user
+
+            await updateProfile(newUser, { displayName: name });
+
+            setUser({ ...newUser, displayName: name });
             
         } catch (error) {
             console.log('Erro ao registrar o usuário', error);
+            throw error;
         }
     }
 

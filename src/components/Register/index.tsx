@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react"
 
 //icons
@@ -9,18 +10,43 @@ import Container from "../Container"
 import Input from "../Input";
 import Button from "../Button";
 import { IoIosMail } from "react-icons/io";
+import { useAuth } from "../../config/useAuth";
 
 const Register = () => {
+
+    const { register } = useAuth()
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+
+    const handleSubmit = async(e: React.FormEvent) => {
+        e.preventDefault();
+
+        if(!email || !password || !name){
+            alert('Preencha todos os campos')
+            return;
+        }
+
+        try {
+            
+            await register(email, password, name)
+
+        } catch (error: any) {
+            if(error.code === 'auth/email-already-in-use'){
+                alert('Esse e-mail já está cadastrado!')
+            }else{
+                alert('Erro ao registrar usuário')
+            }
+        }
+    }
+
     return (
         <Container>
             <div className="w-[450px] bg-white/15 backdrop-blur-md border-2 border-white/20 p-10 rounded-lg">
                 <h2 className="text-white text-3xl mb-4">Registrar-se</h2>
-                <form className="flex flex-col gap-3">
+                <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
                     <div className="relative">
                         <Input
                             type="text"
