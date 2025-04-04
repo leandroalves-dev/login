@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { auth } from "./firebaseConfig";
 
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged, User, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged, User, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from 'firebase/auth'
 import { FirebaseError } from "firebase/app";
 
 export function useAuth() {
@@ -64,8 +64,22 @@ export function useAuth() {
         setUser(null);
     }
 
+    async function resetPassword(email: string) {
+        try {
+            await sendPasswordResetEmail(auth, email);
+        } catch (error: unknown) {
+            if (error instanceof FirebaseError) {
+                if (error.code === "auth/user-not-found") {
+                    throw new Error("Nenhuma conta encontrada com esse e-mail.");
+                } else {
+                    throw new Error("Erro ao tentar redefinir a senha. Tente novamente.");
+                }
+            }
+        }
+    }
+
     
-    return { user, loading, register, login, logout }
+    return { user, loading, register, login, logout, resetPassword }
 
 }
 
