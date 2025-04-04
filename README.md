@@ -60,6 +60,13 @@ const auth = getAuth(app);
 export { auth };
 ````
 
+##  Demonstração do projeto
+
+![Image](https://github.com/user-attachments/assets/e3139091-5fdd-4470-9221-0f344fc7684c)
+![Image](https://github.com/user-attachments/assets/418ed699-460a-40c3-8778-aa9e000dc5b0)
+![Image](https://github.com/user-attachments/assets/bed57d1a-ebdc-455c-b81a-a909a03df766)
+![Image](https://github.com/user-attachments/assets/1bd5376e-8e5a-4603-aa77-d7f077dae279)
+
 ## Como rodar o projeto
 
 1. Clone este repositório:
