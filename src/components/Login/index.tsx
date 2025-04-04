@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 //icons
 import { FaLock } from "react-icons/fa"
@@ -17,6 +17,7 @@ import AlertMessage from "../AlertMessage";
 const Login = () => {
 
     const { login } = useAuth()
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -37,7 +38,10 @@ const Login = () => {
             setSuccess('Login efetuado com sucesso!');
             setEmail('');
             setPassword('');
-            setTimeout( () => { setSuccess('') },1500)
+            setTimeout( () => {
+                setSuccess('')
+                navigate('/inicio')
+            },1500)
 
         } catch (error) {
             setError(error instanceof Error ? error.message : 'Erro ao fazer login.');

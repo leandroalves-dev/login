@@ -5,6 +5,7 @@ import Home from './components/Home';
 import ForgotPassword from './components/ForgotPassword';
 import Register from './components/Register';
 import Login from './components/Login';
+import Inicio from './components/Inicio';
 
 function App() {
     return (    
@@ -12,6 +13,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Home />} />
+                <Route path='/inicio' element={<Inicio />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/forgotPassword' element={<ForgotPassword />} />
