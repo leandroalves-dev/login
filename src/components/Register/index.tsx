@@ -11,6 +11,7 @@ import Input from "../Input";
 import Button from "../Button";
 import { IoIosMail } from "react-icons/io";
 import { useAuth } from "../../config/useAuth";
+import AlertMessage from "../AlertMessage";
 
 const Register = () => {
 
@@ -19,25 +20,34 @@ const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
 
     const handleSubmit = async(e: React.FormEvent) => {
         e.preventDefault();
 
         if(!email || !password || !name){
-            alert('Preencha todos os campos')
+            setError('Preencha todos os campos')
+            setTimeout( () => { setError('') },1500)
             return;
         }
 
         try {
-            
             await register(email, password, name)
+            setSuccess('Usuário cadastrado com sucesso!');
+            setEmail('');
+            setPassword('');
+            setName('');
+            setTimeout( () => { setSuccess('') },1500)
 
         } catch (error: any) {
             if(error.code === 'auth/email-already-in-use'){
-                alert('Esse e-mail já está cadastrado!')
+                setError('Esse e-mail já está cadastrado!')
+                setTimeout( () => { setError('') },1500)
             }else{
-                alert('Erro ao registrar usuário')
+                setError('Erro ao registrar usuário')
+                setTimeout( () => { setError('') },1500)
             }
         }
     }
@@ -87,6 +97,8 @@ const Register = () => {
                     </div>
                     <Button title="Registrar" />
                 </form>
+                <AlertMessage type="error" message={error} />
+                <AlertMessage type="success" message={success} />
             </div>
         </Container>
     )

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { auth } from "./firebaseConfig";
 
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged, User, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { FirebaseError } from "firebase/app";
 
 export function useAuth() {
     const [user, setUser] = useState<User | null>(null);
@@ -40,8 +41,20 @@ export function useAuth() {
             const login = await signInWithEmailAndPassword(auth, email, password);
             setUser(login.user);
             
-        } catch (error) {
-            console.log('Erro ao logar', error);
+        } catch (error: unknown) {
+            if (error instanceof FirebaseError) {
+                if (error.code === "auth/invalid-credential") {
+                    throw new Error("E-mail ou senha incorretos. Verifique os dados e tente novamente.");
+                } else if (error.code === "auth/invalid-email") {
+                    throw new Error("Formato de e-mail inválido.");
+                } else if (error.code === "auth/user-not-found") {
+                    throw new Error("Usuário não encontrado. Verifique o e-mail e tente novamente.");
+                } else if (error.code === "auth/wrong-password") {
+                    throw new Error("Senha incorreta. Tente novamente.");
+                } else {
+                    throw new Error("Ocorreu um erro inesperado. Tente novamente.");
+                }
+            }
         }
     }
 
