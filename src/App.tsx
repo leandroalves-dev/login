@@ -10,7 +10,7 @@ import Inicio from './components/Inicio';
 function App() {
     return (    
 
-        <BrowserRouter>
+        <BrowserRouter basename="/projects/login">
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/inicio' element={<Inicio />} />

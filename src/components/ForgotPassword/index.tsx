@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate  } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 
 //components
 import Container from "../Container"
@@ -65,6 +65,7 @@ const ForgotPassword = () => {
                         <IoIosMail size={16} color="#FFF" className="absolute right-5 top-3.5" />
                     </div>
                     <Button title="Enviar" />
+                    <Link to="/" className="text-zinc-800 hover:underline mt-3 inline-block">Voltar</Link> 
                 </form>
                 <AlertMessage type="error" message={error} />
                 <AlertMessage type="success" message={success} />

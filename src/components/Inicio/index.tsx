@@ -17,8 +17,6 @@ const Inicio = () => {
         navigate("/login");
     }
 
-    console.log('USER', user?.displayName)
-
     return (
         <Container>
             <div className="w-[450px] bg-white/15 backdrop-blur-md border-2 border-white/20 p-10 rounded-lg">
