@@ -62,10 +62,11 @@ export { auth };
 
 ##  Demonstração do projeto
 
-![Image](https://github.com/user-attachments/assets/e3139091-5fdd-4470-9221-0f344fc7684c)
-![Image](https://github.com/user-attachments/assets/418ed699-460a-40c3-8778-aa9e000dc5b0)
-![Image](https://github.com/user-attachments/assets/bed57d1a-ebdc-455c-b81a-a909a03df766)
-![Image](https://github.com/user-attachments/assets/1bd5376e-8e5a-4603-aa77-d7f077dae279)
+<img width="400" height="200" alt="Image" src="https://github.com/user-attachments/assets/ea344902-d4c0-4701-9fc7-f0bac7fe5fe0" />
+<img width="400" height="200" alt="Image" src="https://github.com/user-attachments/assets/9835a5bb-05aa-482a-b4b0-4de28b75b52f" />
+<img width="400" height="200" alt="Image" src="https://github.com/user-attachments/assets/ee913d62-d592-4eb9-af79-927a751959e5" />
+<img width="400" height="200" alt="Image" src="https://github.com/user-attachments/assets/ac39785a-537e-47d5-b48a-bfd2843a9452" />
+<img width="400" height="200" alt="Image" src="https://github.com/user-attachments/assets/3fc8b565-099d-478f-8f9f-254961dfe2cc" />
 
 ## Como rodar o projeto
 
